@@ -190,6 +190,7 @@ def main():
     parser.add_argument("--savePickle", type=str, default=None, help="specify name to save Pickle of count annotated dDNNF for incremental sampling", dest="savePickle")
     parser.add_argument("--printStats", type=int, default=0, help="print d-DNNF compilation stats", dest="printStats")
     parser.add_argument("--seed", type=int, default=0, help="seed for random number generator", dest="seed")
+    parser.add_argument("--dDNNFout", type=str, default=None, help="specify file name to export compiled dDNNF file to", dest="dDNNFout")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--dDNNF', type=str, help="specify dDNNF file", dest="dDNNF")
     group.add_argument('--countPickle', type=str, help="specify Pickle of count annotated dDNNF", dest="countPickle")
@@ -227,7 +228,10 @@ def main():
         with open(DIMACSCNF, "r") as f:
             text = f.read()
             f.close()
-        dDNNF = DIMACSCNF + ".nnf"
+        if args.dDNNFout:
+            dDNNF = args.dDNNFout
+        else:
+            dDNNF = DIMACSCNF + ".nnf"
         cmd = "./d4 " + DIMACSCNF + " -out=" + dDNNF
         if not printCompilerOutput:
             cmd += " > /dev/null 2>&1"
