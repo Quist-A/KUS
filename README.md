@@ -18,6 +18,11 @@ The usage instructions and default values to arguments can be found by running
 python KUS.py -h
 ```
 
+The symDNNF version of KUS can be runned by the 'KUS_symDNNF.py' Python script. A simple invocation looks as follows:
+```bash
+python KUS_symDNNF.py --samples 1000 --dDNNF <symdnnffile>
+```
+
 ## Output Format
 The output samples are stored in samples.txt by default. Each line of the output consists of a serial number of the sample followed by a satisfying assignment. The satisfying assignment consists of literals seperated by space. Note that turning random assignment (--randAssign) to 0 can lead to partial assignments in each line. In such cases, the unassigned variables can be chosen to be True or False.
 
